@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: url("../img/mk2.jpg");
+  background: linear-gradient(to bottom, #2b2b2b41 0%, #0000005f 80%),url("../img/mk2.jpg");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center;
