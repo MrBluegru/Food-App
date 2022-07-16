@@ -1,0 +1,42 @@
+.landingPage {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: url("../img/mk2.jpg");
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center;
+  background-size: cover;
+}
+
+.letras {
+  color: #000000;
+  font-size: 3rem;
+  font-weight: bold;
+  font-family: fantasy;
+  display: flex;
+  margin-top: -6rem;
+}
+
+.btn-start {
+  background-color: #000000;
+  color: rgb(29, 46, 129);
+  border: none;
+  border-radius: 5px;
+  padding: 1rem 2rem;
+  font-size: 2rem;
+  font-family: fantasy;
+  cursor: pointer;
+}
+
+.link-name {
+  color: #000000;
+  font-size: 2rem;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: fantasy;
+  margin-top: 1.2rem;
+}

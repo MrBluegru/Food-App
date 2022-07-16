@@ -16,7 +16,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      abstract: {
+      imagen: {
+        type: DataTypes.STRING,
+      },
+      summary: {
         type: DataTypes.STRING,
         allowNull: false,
       },
