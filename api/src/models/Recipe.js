@@ -20,14 +20,14 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
       },
       summary: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
       },
       healthScore: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
       },
       StepByStep: {
-        type: DataTypes.STRING,
+        type: DataTypes.ARRAY(DataTypes.STRING),
       },
       createdDB:{
         type: DataTypes.BOOLEAN, 
