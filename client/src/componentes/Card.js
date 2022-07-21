@@ -14,7 +14,10 @@ export default function Card({ id, image, name, diets }) {
           <img src={image} alt={`Imagen de ${name}`} />
         </div>
 
-        <h3>Diets</h3> 
+        <div className="diets_title">
+          <span>Diets</span>
+        </div>
+
         <div className="dietas">
           {diets.map((e) => {
             return <p key={e}>{`${e}✔`}</p>;
