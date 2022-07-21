@@ -9,10 +9,7 @@
   object-fit: contain;
   overflow-y: scroll;
 }
-.card {
-  display: inline-block;
-  margin: 2rem 2rem;
-}
+
 .titulo {
   font-size: 2rem;
   font-weight: bold;

@@ -27,7 +27,7 @@ export default function SearchBar() {
         <input
           className="search_bar_input"
           type="text"
-          placeholder="Receta.."
+          placeholder="Buscar una receta..."
           onChange={(e) => {
             handleChange(e);
           }}
