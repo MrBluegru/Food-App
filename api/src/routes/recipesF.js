@@ -18,7 +18,7 @@ const recipeName_All = async (req, res) => {
       res.send(recipes);
     }
   } catch (error) {
-    res.status(500).send({ message: "Error al obtener la receta" });
+    res.status(500).send(error);
   }
 };
 

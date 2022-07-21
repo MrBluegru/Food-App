@@ -6,7 +6,7 @@ export default function LandingPage() {
   return (
     <div className="landingPage">
       <h1 className="letras">Welcome to Food App</h1>
-      <Link to="/home">
+      <Link className="linkS" to="/home">
         <button className="btn-start">Start</button>
       </Link>
       <div>

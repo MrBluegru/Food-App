@@ -11,6 +11,11 @@
   background-size: cover;
 }
 
+.linkS {
+  text-decoration: none;
+  color: black;
+}
+
 .letras {
   color: #000000;
   font-size: 3rem;
@@ -29,6 +34,7 @@
   font-size: 2rem;
   font-family: fantasy;
   cursor: pointer;
+  
 }
 
 .link-name {

@@ -1,0 +1,43 @@
+.card{
+    background-color: rgb(148, 117, 198);
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.1);
+    max-width: 300px;
+    padding: 30px;
+    position: relative;
+    min-height: 200px;
+    min-width: 300px;
+}
+
+.nombre {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.5em;
+    text-decoration: none;
+    color: black;
+    padding-bottom: 1rem;
+}
+
+.imagen {
+    border-radius: 5px;
+    height: 200px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.dietas {
+    display: flex; 
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.link {
+    text-decoration: none;
+    color: black
+}
+
+p {
+    margin: 1px;
+}
