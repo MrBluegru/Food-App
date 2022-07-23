@@ -21,7 +21,41 @@ export function getRecipesName(name) {
         payload: response.data,
       });
     } catch (error) {
+      return error;
+    }
+  };
+}
+
+export function getRecipesById(id) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`http://localhost:3001/recipes/${id}`);
+      return dispatch({
+        type: "RECIPES_DETAILS",
+        payload: response.data,
+      });
+    } catch (error) {
       console.log(error);
     }
+  };
+}
+export function orderByHealthScore(payload) {
+  return {
+    type: "ORDER_BY_HEALTH_SCORE",
+    payload,
+  };
+}
+
+export function orderByName(payload) {
+  return {
+    type: "ORDER_BY_NAME",
+    payload,
+  };
+}
+
+export function filterDiet(payload) {
+  return {
+    type: "FILTER_DIET",
+    payload,
   };
 }

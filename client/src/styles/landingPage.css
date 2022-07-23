@@ -13,22 +13,28 @@
 
 .linkS {
   text-decoration: none;
-  color: black;
+  color: rgb(49, 30, 80);
+
 }
 
 .letras {
-  color: #000000;
-  font-size: 3rem;
+  color: rgb(49, 30, 80);
+  font-size: 5rem;
   font-weight: bold;
   font-family: fantasy;
   display: flex;
   margin-top: -6rem;
+  text-shadow: 0 1px 0 #ddd, 0 2px 0 #ccc, 0 3px 0 #bbb, 0 4px 0 #aaa,
+    0 5px 0 #acacac, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2),
+    0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2),
+    0 20px 20px rgba(0, 0, 0, 0.15);
 }
 
 .btn-start {
   background-color: #000000;
-  color: rgb(29, 46, 129);
   border: none;
+  color: rgb(49, 30, 80);
   border-radius: 5px;
   padding: 1rem 2rem;
   font-size: 2rem;
@@ -38,11 +44,15 @@
 }
 
 .link-name {
-  color: #000000;
-  font-size: 2rem;
+  color: rgb(49, 30, 80);
+  font-size: 3rem;
   font-weight: bold;
   text-decoration: none;
   cursor: pointer;
   font-family: fantasy;
-  margin-top: 1.2rem;
+  text-shadow: 0 1px 0 #ddd, 0 2px 0 #ccc, 0 3px 0 #bbb, 0 4px 0 #aaa,
+    0 5px 0 #acacac, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2),
+    0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2),
+    0 20px 20px rgba(0, 0, 0, 0.15);
 }

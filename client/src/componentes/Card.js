@@ -4,8 +4,9 @@ import "../styles/card.css";
 
 export default function Card({ id, image, name, diets }) {
   return (
-    <Link className="link" to={`/recipe/${id}`}>
+    <Link className="link" to={`/recipes/${id}`}>
       <div className="card" key={id}>
+        
         <div className="nombre">
           <span>{name}</span>
         </div>

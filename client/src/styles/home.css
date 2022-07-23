@@ -22,3 +22,9 @@
     0 20px 20px rgba(0, 0, 0, 0.15);
 
 }
+
+.paginado {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
