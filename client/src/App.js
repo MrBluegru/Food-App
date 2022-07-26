@@ -3,6 +3,7 @@ import LandingPage from "./componentes/LandingPage";
 import Home from "./componentes/Home";
 import Description from "./componentes/Description";
 import CreateRecipes from "./componentes/CreateRecipes";
+import Error from "./componentes/Error"
 import "./App.css";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/recipes/:id" element={<Description />} />
           <Route path="/createRecipe" element={<CreateRecipes />} />
+          <Route path="*" element={<Error />} />
         </Routes>
       </div>
     </BrowserRouter>

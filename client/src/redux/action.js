@@ -53,6 +53,36 @@ export function orderByName(payload) {
   };
 }
 
+export function getDiets() {
+  return async function (dispatch) {
+    const response = await axios.get(`http://localhost:3001/diets`);
+    dispatch({
+      type: "GET_DIETS",
+      payload: response.data,
+    });
+  };
+}
+
+export function createRecipes(payload) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post(`http://localhost:3001/recipes`, payload);
+      return dispatch({
+        type: "CREATE_RECIPES",
+        payload: response.data,
+      });
+    } catch (error) {
+      return error;
+    }
+  };
+}
+
+export function clearDetails(){
+  return{
+    type: "CLEAR_DETAILS",
+  }
+}
+
 export function filterDiet(payload) {
   return {
     type: "FILTER_DIET",

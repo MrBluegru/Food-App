@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipes } from "../redux/action";
+import { getRecipes, clearDetails } from "../redux/action";
+import { Link } from "react-router-dom";
 import Card from "./Card";
 import NavBar from "./NavBar";
 import Paginado from "./Paginado";
+import Reloading from "./Reloading";
 import "../styles/home.css";
-import { Link } from "react-router-dom";
 
 export default function Home() {
   const dispatch = useDispatch();
   const allRecipes = useSelector((state) => state.recipes);
-
 
   // creamos estados locales para paginado
   // estado con la pag actual y uno que setee la pag acctual
@@ -31,17 +31,19 @@ export default function Home() {
     setCurrentPage(pageNum); // seteo la pag actual
   };
 
-
   useEffect(() => {
     dispatch(getRecipes());
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(clearDetails());
+  });
+
   return (
     <div className="home">
-
       <div className="titulo">
         <Link className="linkS" to={"/"}>
-        <h1>FOOD APP</h1>
+          <h1>FOOD APP</h1>
         </Link>
       </div>
 
@@ -58,17 +60,21 @@ export default function Home() {
       </div>
 
       <div className="cards">
-        {currentRecipes?.map((e) => {
-          return (
-            <Card
-              key={e.id}
-              id={e.id}
-              image={e.image}
-              name={e.name}
-              diets={e.diets}
-            />
-          );
-        })}
+        {currentRecipes.length ? (
+          currentRecipes.map((e) => {
+            return (
+              <Card
+                key={e.id}
+                id={e.id}
+                image={e.image}
+                name={e.name}
+                diets={e.diets}
+              />
+            );
+          })
+        ) : (
+          <Reloading />
+        )}
       </div>
     </div>
   );

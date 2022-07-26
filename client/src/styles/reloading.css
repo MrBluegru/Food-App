@@ -1,0 +1,22 @@
+.rotate {
+  margin-top: 100px;
+  background: url("../img/mk7.jpg");
+  width: 600px;
+  height: 350px;
+  overflow: hidden;
+  background-repeat: no-repeat;
+}
+
+.rotate {
+  animation: rotation 4s infinite linear;
+
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
