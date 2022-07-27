@@ -12,8 +12,8 @@ export default function CreateAct() {
     name: "",
     image: "",
     summary: "",
-    healthScore: null,
-    StepByStep: [],
+    healthScore: "",
+    StepByStep: "",
     diets: [],
   });
 
@@ -23,6 +23,7 @@ export default function CreateAct() {
       [e.target.name]: e.target.value,
     });
   }
+  console.log(input.diets);
 
   function handleSelect(e) {
     setInput({
@@ -39,7 +40,7 @@ export default function CreateAct() {
       image: "",
       summary: "",
       healthScore: "",
-      StepByStep: [],
+      StepByStep: "",
       diets: [],
     });
   }
@@ -60,7 +61,6 @@ export default function CreateAct() {
 
   const errorMensaje = validacion(input.name);
 
-  console.log(errorMensaje);
 
   ////////////////////////////////////////////////////////////////////
   useEffect(
@@ -68,7 +68,7 @@ export default function CreateAct() {
       dispatch(getDiets());
     },
     // eslint-disable-next-line
-    []
+    [dispatch]
   );
   return (
     <div className="createR">
@@ -77,9 +77,10 @@ export default function CreateAct() {
       </div>
       <div className="create_form">
         <div className="form">
-          <form>
+          <form onSubmit={(e) => enviarRecipe(e)}>
             <label> Name </label>
             <input
+              id="name"
               type="text"
               name="name"
               value={input.name}
@@ -89,6 +90,7 @@ export default function CreateAct() {
 
             <label> Image </label>
             <input
+              id="image"
               type="text"
               name="image"
               value={input.image}
@@ -96,6 +98,7 @@ export default function CreateAct() {
             />
             <label> Summary </label>
             <input
+              id="summary"
               type="text"
               name="summary"
               value={input.summary}
@@ -103,15 +106,17 @@ export default function CreateAct() {
             />
             <label> Health Score </label>
             <input
-              type="number"
+              id="healthScore"
+              type="text"
               name="healthScore"
-              min={0}
-              max={100}
+              // min={0}
+              // max={100}
               value={input.healthScore}
               onChange={(e) => handleChange(e)}
             />
             <label> Step By Step </label>
             <input
+              id="StepByStep"
               type="text"
               name="StepByStep"
               value={input.StepByStep}
@@ -122,12 +127,14 @@ export default function CreateAct() {
             <select
               name="diets"
               value={input.diets}
+              required
               onChange={(e) => handleSelect(e)}
             >
-              {alldiets.map(({ name }) => {
+              <option hidden>Select a Diet</option>
+              {alldiets.map((e) => {
                 return (
-                  <option key={name} value={name} >
-                    {name}
+                  <option value={e.name} key={e.id}>
+                    {e.name}
                   </option>
                 );
               })}
@@ -136,15 +143,14 @@ export default function CreateAct() {
               <p>{input.diets.map((e) => `${e} | `)}</p>
             </ul>
 
+            <button>
+              <Link to="/home"> Volver </Link>
+            </button>
             <div className="buttons">
-              <button>
-                <Link to="/home"> Volver </Link>
-              </button>
-              <button 
-              className="boton_crear"
-              type="submit" 
-              onClick={(e) => enviarRecipe(e)}
-              disabled={errorMensaje}
+              <button
+                className="boton_crear"
+                type="submit"
+                disabled={errorMensaje}
               >
                 Crear Receta
               </button>

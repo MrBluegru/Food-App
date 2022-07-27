@@ -1,9 +1,10 @@
 require("dotenv").config();
 const axios = require("axios");
 const { Recipe, Diet } = require("../db.js");
-const apikey = process.env.APIKEY2;
+const apikey = process.env.APIKEY1;
 const LINK = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apikey}&number=100&addRecipeInformation=true`;
 
+// optenemos la informacion de la API
 const getRecipesApi = async () => {
   const mapeable = await axios.get(LINK);
   const recipes = mapeable.data.results.map((recipe) => {
@@ -13,14 +14,14 @@ const getRecipesApi = async () => {
       image: recipe.image,
       summary: recipe.summary,
       healthScore: recipe.healthScore,
-      diets: recipe.diets,
+      diets:
+        recipe.diets.length === 0 ? (recipe.diets = [`None`]) : recipe.diets,
       dishTypes: recipe.dishTypes,
       StepByStep: recipe.analyzedInstructions.map((e) => {
         return {
           steps: e.steps
             .map((e) => {
               return {
-                number: e.number,
                 step: e.step,
               };
             })
@@ -32,7 +33,7 @@ const getRecipesApi = async () => {
   return recipes;
 };
 
-//optenemos las dietas desde el get a la API
+//optenemos las dietas desde el get-API
 const getDiets = async () => {
   const recipes = await getRecipesApi();
   const diets = recipes.map((recipe) => recipe.diets);
@@ -46,15 +47,27 @@ const getDiets = async () => {
   );
 };
 getDiets();
-console.log("Dietas obtenidas y guardadas"); 
+console.log("Dietas obtenidas y guardadas");
 
 // traemos las recetas de la base de datos incluyendo el modelo de dietas
 
 const getRecipesDB = async () => {
   const recipesDB = await Recipe.findAll({
-    include: [{ model: Diet, through: {attributes: []} }],
+    include: [{ model: Diet, through: { attributes: [] } }],
   });
-  return recipesDB;
+  const recipes = recipesDB.map((recipe) => {
+    return {
+      id: recipe.id,
+      name: recipe.name,
+      image: recipe.image,
+      summary: recipe.summary,
+      healthScore: recipe.healthScore,
+      diets: recipe.diets.map((e) => e.name),
+      dishTypes: recipe.dishTypes,
+      StepByStep: recipe.StepByStep,
+    };
+  });
+  return recipes;
 };
 
 // concatenamos la info de la base de datos con la info de la API

@@ -26,7 +26,7 @@ const recipeID = async (req, res) => {
   try {
     const { id } = req.params;
     const recipes = await allRecipes();
-    const filtered = recipes.find((recipe) => recipe.id === parseInt(id));
+    const filtered = recipes.find((recipe) => recipe.id === parseInt(id) || recipe.id === id);
     res.send(filtered);
   } catch (error) {
     res.status(500).send({ message: "Error al obtener la receta" });
@@ -35,18 +35,18 @@ const recipeID = async (req, res) => {
 
 const recipeCreate = async (req, res) => {
   try {
-    const { name, image, summary, healthScore, StepByStep, diet } = req.body;
+    const { name, image, summary, healthScore, StepByStep, diets } = req.body;
     const RecipeCreated = await Recipe.create({
       name,
       image,
       summary,
       healthScore,
       StepByStep,
-      diet,
+      diets,
     });
     let dietsDB = await Diet.findAll({
       where: {
-        name: diet,
+        name: diets,
       },
     });
     RecipeCreated.addDiet(dietsDB);

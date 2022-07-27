@@ -6,7 +6,6 @@ export default function Card({ id, image, name, diets }) {
   return (
     <Link className="link" to={`/recipes/${id}`}>
       <div className="card" key={id}>
-        
         <div className="nombre">
           <span>{name}</span>
         </div>
@@ -20,9 +19,11 @@ export default function Card({ id, image, name, diets }) {
         </div>
 
         <div className="dietas">
-          {diets.map((e) => {
-            return <p key={e}>{`${e}✔`}</p>;
-          })}
+          {diets.length
+            ? diets.map((e) => {
+                return <p key={e}>{`${e}✔`}</p>;
+              })
+            : diets}
         </div>
       </div>
     </Link>

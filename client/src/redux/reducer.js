@@ -2,7 +2,6 @@ const initialState = {
   allrecipes: [],
   recipes: [],
   diets: [],
-  recipeCreate: [],
   recipesDetails: {},
 };
 
@@ -84,7 +83,6 @@ export default function rootReducer(state = initialState, action) {
     case "CREATE_RECIPE":
       return {
         ...state,
-        recipeCreate: action.payload,
       };
     case "CLEAR_DETAILS":
       return {

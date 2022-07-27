@@ -24,10 +24,10 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       healthScore: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
       },
       StepByStep: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
+        type: DataTypes.STRING,
       },
       createdDB:{
         type: DataTypes.BOOLEAN, 
