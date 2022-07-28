@@ -1,5 +1,5 @@
 .descrip {
-  height: 100vh;
+  min-height: 975px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,12 +12,26 @@
   background-size: cover;
 }
 
+.healthS {
+  margin: 5px;
+  font-style: oblique;
+}
+.imageHSDiets {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  align-items: center;
+  font-style: oblique;
+
+}
+.image-descrip {
+  border-radius: 5px;
+}
 .descrip-chilld {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 95%;
-  width: 95%;
+  width: 50%;
   background-color: rgba(148, 117, 198, 0.257);
   border-radius: 10px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -27,9 +41,26 @@
   margin: 1rem 1rem;
 }
 
+.resumen-descrip {
+  padding: 20px;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+
+}
+
+.stepByS {
+  margin-top: 1px;
+  padding: 15px;
+}
+
 .link_home {
   text-decoration: none;
   color: black;
+}
+
+.step-descripS {
+  font-size: 20px;
+  font-style: oblique;
 }
 
 .button_volver {
@@ -40,6 +71,6 @@
   font-family: "Ubuntu", sans-serif;
   font-weight: 700;
   font-size: 1.5em;
-  margin-top: 5rem;
-
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }

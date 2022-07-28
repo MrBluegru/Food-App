@@ -21,33 +21,49 @@ export default function Description() {
           <h1>{allrecipes.name}</h1>
         </div>
 
-        <div className="imagen">
-          <img src={allrecipes.image} alt={`Food of ${allrecipes.name}`} />
+        <div className="healthS">
+          <p>Health Score: {allrecipes.healthScore}</p>
+        </div>
+        <div className="imageHSDiets">
+          <p>
+            Diets:
+            {allrecipes.diets?.map((e) => {
+              return <p key={e}>{`${e}✔`}</p>;
+            })}
+          </p>
+          <img
+            className="image-descrip"
+            src={allrecipes.image}
+            alt={`Food of ${allrecipes.name}`}
+          />
+          <p>
+            Dish Types:
+            {allrecipes.dishTypes?.map((e) => {
+              return <p key={e}>{`✔ ${e}`}</p>;
+            })}
+          </p>
         </div>
 
         <div className="resumen">
-          <div>
+          <div className="resumen-descrip">
             <p dangerouslySetInnerHTML={{ __html: descript }} />
           </div>
-          <p>Health Score: {allrecipes.healthScore}</p>
-          <p>Diets: {allrecipes.diets}</p>
-          <p>Dish Types: {allrecipes.dishTypes}</p>
-        </div>
 
-        <div className="stepByS">
-          <h3>Step by Step</h3>
-          <div>
+          <div className="stepByS">
+            <div className="step-descripS">
+              <spam >Step by Step</spam>
+            </div>
             {allrecipes.StepByStep?.map((e) => {
-              return e.steps?.map(({ number, step }) => {
-                return <li key={number}>{step}</li>;
-              });
+              return <ul key={e}>{`✔ ${e}`} </ul>;
             })}
           </div>
-        </div>
 
-        <Link className="link_home" to="/home">
-          <button className="button_volver">Volver</button>
-        </Link>
+          <div className="button_volver">
+            <Link className="link_home" to="/home">
+              <button>Volver</button>
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

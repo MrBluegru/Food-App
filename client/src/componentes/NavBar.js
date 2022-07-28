@@ -22,7 +22,7 @@ export default function NavBar() {
     e.preventDefault();
     dispatch(orderByName(e.target.value));
     setCurrentPage(1);
-    setOrden(e.target.value);
+    // setOrden(e.target.value);
   }
   
   
@@ -30,7 +30,7 @@ export default function NavBar() {
     e.preventDefault();
     dispatch(orderByHealthScore(e.target.value));
     setCurrentPage(1);
-    setOrden(e.target.value);
+    // setOrden(e.target.value);
 
   };
 
@@ -53,38 +53,38 @@ export default function NavBar() {
             handleclick(e);
           }}
         >
-          Todas las recetas
+          All recipes
         </button>
       </div>
 
       <div className="act">
         <Link className="link" to="/createRecipe">
-          <button>Crear Receta</button>
+          <button>Create Recipe</button>
         </Link>
       </div>
 
       <div className="order_name">
         <select onChange={(e) => handleOrderName(e)} >
-          <option hidden>Ordenar por nombre </option>
-          <option disabled="disabled" default={true} value="">Ordenar por nombre </option>
-          <option value="asc">Ascendente (A-Z)</option>
-          <option value="desc">Descendente (Z-A)</option>
+          <option hidden>Sort by name </option>
+          <option disabled="disabled" default={true} value="">Sort by name </option>
+          <option value="asc">Ascending (A-Z)</option>
+          <option value="desc">Descending (Z-A)</option>
         </select>
       </div>
 
       <div className="order_healthS">
         <select onChange={(e) => handleOrderHealthS(e)}>
-          <option hidden>Ordenar por Health Score</option>
-          <option disabled="disabled" default={true} value="">Ordenar por Health Score</option>
-          <option value="healthSDesc">Mayor a menor</option>
-          <option value="healthSAsc">Menor a mayor</option>
+          <option hidden>Sort by Health Score</option>
+          <option disabled="disabled" default={true} value="">Sort by Health Score</option>
+          <option value="healthSDesc">Highest to lowest</option>
+          <option value="healthSAsc">Lowest to highest</option>
         </select>
       </div>
 
       <div className="filter_type_diets">
         <select  className="filt_act" onChange={(e) => handleFilterDiets(e)}>
-          <option hidden>Filtrar por Dieta</option>
-          <option disabled="disabled" default={true} value="">Filtrar por Dieta</option>
+          <option hidden>Filter by Diet</option>
+          <option disabled="disabled" default={true} value="">Filter by Diet</option>
           <option value="gluten free">Gluten free</option>
           <option value="dairy free">Dairy free</option>
           <option value="lacto ovo vegetarian">Lacto ovo vegetarian</option>

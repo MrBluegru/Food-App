@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const { allRecipes } = require("../data/dataRecipes");
+const { allRecipes } = require("../data/allData");
 const { Recipe, Diet } = require("../db.js");
 
 const recipeName_All = async (req, res) => {

@@ -69,6 +69,7 @@ export default function Home() {
                 image={e.image}
                 name={e.name}
                 diets={e.diets}
+                healthScore={e.healthScore}
               />
             );
           })

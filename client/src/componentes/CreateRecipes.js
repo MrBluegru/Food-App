@@ -12,7 +12,7 @@ export default function CreateAct() {
     name: "",
     image: "",
     summary: "",
-    healthScore: "",
+    healthScore: 0,
     StepByStep: "",
     diets: [],
   });
@@ -48,19 +48,18 @@ export default function CreateAct() {
   //Validacion////////////////////////////////////////////////////////
 
   const regex = {
-    nombre: /^[a-z ,.'-]+$/i,
-  }
+    nombre: /^[a-zA-Z]$/,
+  };
 
   const validacion = (nombre) => {
-    if(nombre.length <= 2) {
+    if (nombre.length <= 2) {
       return `Nombre muy corto`;
-    } else if(!regex.nombre.test(nombre)) {
-      return `Tiene que ser un nombre valido`
+    } else if (regex.nombre.test(nombre)) {
+      return `Tiene que ser un nombre valido`;
     }
-  }
+  };
 
   const errorMensaje = validacion(input.name);
-
 
   ////////////////////////////////////////////////////////////////////
   useEffect(
@@ -107,10 +106,10 @@ export default function CreateAct() {
             <label> Health Score </label>
             <input
               id="healthScore"
-              type="text"
+              type="number"
               name="healthScore"
-              // min={0}
-              // max={100}
+              min={0}
+              max={100}
               value={input.healthScore}
               onChange={(e) => handleChange(e)}
             />
@@ -143,10 +142,10 @@ export default function CreateAct() {
               <p>{input.diets.map((e) => `${e} | `)}</p>
             </ul>
 
-            <button>
-              <Link to="/home"> Volver </Link>
-            </button>
             <div className="buttons">
+              <Link to="/home">
+                <button> Volver </button>
+              </Link>
               <button
                 className="boton_crear"
                 type="submit"
