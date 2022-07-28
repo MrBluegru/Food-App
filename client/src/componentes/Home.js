@@ -32,6 +32,10 @@ export default function Home() {
   };
 
   useEffect(() => {
+    setCurrentPage(1);
+  }, [allRecipes]);
+
+  useEffect(() => {
     dispatch(getRecipes());
   }, [dispatch]);
 

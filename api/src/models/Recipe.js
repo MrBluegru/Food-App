@@ -26,15 +26,17 @@ module.exports = (sequelize) => {
       healthScore: {
         type: DataTypes.INTEGER,
       },
+      dishTypes: {
+        type: DataTypes.STRING,
+      },
       StepByStep: {
         type: DataTypes.STRING,
       },
-      createdDB:{
-        type: DataTypes.BOOLEAN, 
+      createdDB: {
+        type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: true,
-
-      }
+      },
     },
     {
       timestamps: false,

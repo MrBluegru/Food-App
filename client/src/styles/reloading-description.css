@@ -1,0 +1,22 @@
+.rotate-desc {
+    margin-top: 20px;
+    background: url("../img/mk8.jpg");
+    width: 600px;
+    height: 350px;
+    background-repeat: no-repeat;
+  }
+  
+  .rotate-desc {
+    animation: rotation 4s infinite linear;
+  
+  }
+  
+  @keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+  

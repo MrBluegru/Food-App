@@ -25,7 +25,7 @@ export default function Card({ id, image, name, healthScore, diets }) {
         <div className="dietas">
           {diets.length
             ? diets.map((e) => {
-                return <p key={e}>{`${e}✔`}</p>;
+                return <spam key={e}>{`${e}✔`}</spam>;
               })
             : diets}
         </div>

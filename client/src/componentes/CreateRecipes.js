@@ -13,7 +13,8 @@ export default function CreateAct() {
     image: "",
     summary: "",
     healthScore: 0,
-    StepByStep: "",
+    dishTypes: [],
+    StepByStep: [],
     diets: [],
   });
 
@@ -23,7 +24,6 @@ export default function CreateAct() {
       [e.target.name]: e.target.value,
     });
   }
-  console.log(input.diets);
 
   function handleSelect(e) {
     setInput({
@@ -39,8 +39,9 @@ export default function CreateAct() {
       name: "",
       image: "",
       summary: "",
-      healthScore: "",
-      StepByStep: "",
+      healthScore: 0,
+      dishTypes: [],
+      StepByStep: [],
       diets: [],
     });
   }
@@ -90,7 +91,7 @@ export default function CreateAct() {
             <label> Image </label>
             <input
               id="image"
-              type="text"
+              type="url"
               name="image"
               value={input.image}
               onChange={(e) => handleChange(e)}
@@ -106,13 +107,24 @@ export default function CreateAct() {
             <label> Health Score </label>
             <input
               id="healthScore"
-              type="number"
+              type="range"
               name="healthScore"
-              min={0}
+              min={1}
               max={100}
               value={input.healthScore}
               onChange={(e) => handleChange(e)}
             />
+            <p> {input.healthScore}</p>
+
+            <label> Dish Types </label>
+            <input
+              id="dishTypes"
+              type="text"
+              name="dishTypes"
+              value={input.dishTypes}
+              onChange={(e) => handleChange(e)}
+            />
+
             <label> Step By Step </label>
             <input
               id="StepByStep"
