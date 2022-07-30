@@ -1,7 +1,7 @@
 require("dotenv").config();
 const axios = require("axios");
 const { Recipe, Diet } = require("../db.js");
-const apikey = process.env.APIKEY7;
+const apikey = process.env.APIKEY9;
 const LINK = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apikey}&number=100&addRecipeInformation=true`;
 
 const getRecipesApi = async () => {

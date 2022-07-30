@@ -19,15 +19,11 @@ button {
   font-family: "Ubuntu", sans-serif;
   font-weight: 800;
   border-radius: 5px;
-  
 }
 
 button:hover {
   background-color: #4a0d7b;
   color: white;
-}
-button:focus {
-  background-color: rgb(45, 13, 81);
 }
 
 select {

@@ -9,6 +9,7 @@ export default function Description() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const allrecipes = useSelector((state) => state.recipesDetails);
+  
   useEffect(() => {
     dispatch(getRecipesById(id));
   }, [dispatch, id]);

@@ -11,7 +11,19 @@ import "../styles/home.css";
 export default function Home() {
   const dispatch = useDispatch();
   const allRecipes = useSelector((state) => state.recipes);
+  
+  useEffect(() => {
+    dispatch(getRecipes());
+  }, [dispatch]);
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [allRecipes]);
+
+  useEffect(() => {
+    dispatch(clearDetails());
+  });
+  
   // creamos estados locales para paginado
   // estado con la pag actual y uno que setee la pag acctual
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,26 +34,16 @@ export default function Home() {
   // constante con el indice del primer personaje
   const indexOfFirstRecipes = indexOfLastRecipes - recipesPerPage;
   // constante con los paises que estan en la pagina actual
-  const currentRecipes = allRecipes.slice(
+  const currentRecipes = allRecipes.length? allRecipes.slice(
     indexOfFirstRecipes,
     indexOfLastRecipes
-  );
+  ) : [];  
 
   const paginado = (pageNum) => {
     setCurrentPage(pageNum); // seteo la pag actual
-  };
+  };  
 
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [allRecipes]);
 
-  useEffect(() => {
-    dispatch(getRecipes());
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(clearDetails());
-  });
 
   return (
     <div className="home">
@@ -60,6 +62,7 @@ export default function Home() {
           recipesPerPage={recipesPerPage}
           allRecipes={allRecipes.length}
           paginado={paginado}
+          currentPage={currentPage}
         />
       </div>
 

@@ -27,6 +27,7 @@ export default function SearchBar() {
         <input
           className="search_bar_input"
           type="text"
+          value={name || ""}
           placeholder="🔎 Search for a recipe "
           onChange={(e) => {
             handleChange(e);

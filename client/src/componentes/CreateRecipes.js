@@ -12,7 +12,7 @@ export default function CreateAct() {
     name: "",
     image: "",
     summary: "",
-    healthScore: 0,
+    healthScore: 1,
     dishTypes: [],
     StepByStep: [],
     diets: [],
@@ -32,6 +32,27 @@ export default function CreateAct() {
     });
   }
 
+  function handleSelectDT(e) {
+    setInput({
+      ...input,
+      dishTypes: [...input.dishTypes, e.target.value],
+    });
+  }
+
+  function handleDeleteDT(dishTypeS) {
+    setInput({
+      ...input,
+      dishTypes: input.dishTypes.filter((e) => e !== dishTypeS),
+    });
+  }
+
+  function handleDelete(dietS) {
+    setInput({
+      ...input,
+      diets: input.diets.filter((e) => e !== dietS),
+    });
+  }
+
   function enviarRecipe(e) {
     e.preventDefault();
     dispatch(createRecipes(input));
@@ -39,7 +60,7 @@ export default function CreateAct() {
       name: "",
       image: "",
       summary: "",
-      healthScore: 0,
+      healthScore: 1,
       dishTypes: [],
       StepByStep: [],
       diets: [],
@@ -49,19 +70,35 @@ export default function CreateAct() {
   //Validacion////////////////////////////////////////////////////////
 
   const regex = {
-    nombre: /^[a-zA-Z]$/,
+    espacios: /^\s/,
+    numeros: /[^a-z ]\ *([.0-9])*\d/g,
+    caracteresEs: /[\[\\\^\$\.\|\?\*\+\(\)\{\}]/g,
+    url: /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi,
   };
 
-  const validacion = (nombre) => {
-    if (nombre.length <= 2) {
+  const validacion = (entrada) => {
+    if (regex.espacios.test(entrada)) {
+      return `No puede empezar con espacios en blanco`;
+    }
+    if (regex.numeros.test(entrada)) {
+      return `No puede usar numeros`;
+    }
+    if (regex.caracteresEs.test(entrada)) {
+      return `No puede usar caracteres extraños`;
+    }
+    if (entrada.length <= 3) {
       return `Nombre muy corto`;
-    } else if (regex.nombre.test(nombre)) {
-      return `Tiene que ser un nombre valido`;
+    }
+  };
+
+  const validacionImg = (entrada) => {
+    if (!regex.url.test(entrada)) {
+      return `Url de la imagen no valida`;
     }
   };
 
   const errorMensaje = validacion(input.name);
-
+  const errorImage = validacionImg(input.image);
   ////////////////////////////////////////////////////////////////////
   useEffect(
     () => {
@@ -96,8 +133,10 @@ export default function CreateAct() {
               value={input.image}
               onChange={(e) => handleChange(e)}
             />
+            {input.image ? <p>{errorImage}</p> : ``}
+
             <label> Summary </label>
-            <input
+            <textarea
               id="summary"
               type="text"
               name="summary"
@@ -117,16 +156,42 @@ export default function CreateAct() {
             <p> {input.healthScore}</p>
 
             <label> Dish Types </label>
-            <input
+            <select
               id="dishTypes"
-              type="text"
               name="dishTypes"
               value={input.dishTypes}
-              onChange={(e) => handleChange(e)}
-            />
+              onChange={(e) => handleSelectDT(e)}
+            >
+              <option hidden>Select a Dish Types</option>
+              <option disabled="disabled" default={true} value="">
+                Select a Dish Types
+              </option>
+              <option value="side dish">Side dish</option>
+              <option value="lunch">Lunch</option>
+              <option value="main course">Main course</option>
+              <option value="main dish">Main dish</option>
+              <option value="dinner">Dinner</option>
+              <option value="morning meal">Morning meal</option>
+              <option value="brunch">Brunch</option>
+              <option value="breakfast">Breakfast</option>
+              <option value="soup">Soup</option>
+              <option value="salad">Salad</option>
+              <option value="condiment">Condiment</option>
+              <option value="dip">Dip</option>
+              <option value="sauce">Sauce</option>
+              <option value="spread">Spread</option>
+            </select>
+
+            <ul>
+              {input.dishTypes.map((e) => (
+                <ul key={e} onClick={() => handleDeleteDT(e)}>
+                  <button>{e}</button>
+                </ul>
+              ))}
+            </ul>
 
             <label> Step By Step </label>
-            <input
+            <textarea
               id="StepByStep"
               type="text"
               name="StepByStep"
@@ -142,6 +207,9 @@ export default function CreateAct() {
               onChange={(e) => handleSelect(e)}
             >
               <option hidden>Select a Diet</option>
+              <option disabled="disabled" default={true} value="">
+                Select a Diet
+              </option>
               {alldiets.map((e) => {
                 return (
                   <option value={e.name} key={e.id}>
@@ -150,8 +218,13 @@ export default function CreateAct() {
                 );
               })}
             </select>
+
             <ul>
-              <p>{input.diets.map((e) => `${e} | `)}</p>
+              {input.diets.map((e) => (
+                <ul key={e} onClick={() => handleDelete(e)}>
+                  <button>{e}</button>
+                </ul>
+              ))}
             </ul>
 
             <div className="buttons">
@@ -161,7 +234,7 @@ export default function CreateAct() {
               <button
                 className="boton_crear"
                 type="submit"
-                disabled={errorMensaje}
+                disabled={errorMensaje && errorImage}
               >
                 Crear Receta
               </button>
