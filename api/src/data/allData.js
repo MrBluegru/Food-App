@@ -1,7 +1,7 @@
 require("dotenv").config();
 const axios = require("axios");
 const { Recipe, Diet } = require("../db.js");
-const apikey = process.env.APIKEY9;
+const apikey = process.env.APIKEY10;
 const LINK = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apikey}&number=100&addRecipeInformation=true`;
 
 const getRecipesApi = async () => {
@@ -73,7 +73,7 @@ const getRecipesDB = async () => {
       summary: recipe.summary,
       healthScore: recipe.healthScore,
       dishTypes: recipe.dishTypes,
-      StepByStep: recipe.StepByStep.split("*"),
+      StepByStep: recipe.StepByStep,
       diets: recipe.diets.map((e) => e.name),
     };
   });

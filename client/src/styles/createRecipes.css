@@ -14,10 +14,8 @@
 .form {
   display: flex;
   flex-direction: column;
+  /* grid-template-columns: 1fr 1fr 1fr 1fr; */
   align-items: center;
-  justify-content: center;
-  align-items: center;
-
   background-color: rgba(148, 117, 198, 0.503);
   padding: 2rem;
   border-radius: 5px;
@@ -38,3 +36,5 @@
   background-color: black;
   cursor: no-drop;
 }
+
+

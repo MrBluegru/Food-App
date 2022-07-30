@@ -27,7 +27,7 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
       },
       dishTypes: {
-        type: DataTypes.STRING,
+        type: DataTypes.ARRAY(DataTypes.STRING),
       },
       StepByStep: {
         type: DataTypes.STRING,

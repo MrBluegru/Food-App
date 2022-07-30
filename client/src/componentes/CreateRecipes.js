@@ -26,17 +26,27 @@ export default function CreateAct() {
   }
 
   function handleSelect(e) {
-    setInput({
-      ...input,
-      diets: [...input.diets, e.target.value],
-    });
+    if (!input.diets.includes(e.target.value)) {
+      setInput({
+        ...input,
+        diets: [...input.diets, e.target.value],
+      });
+    }
+    if (input.diets.includes(e.target.value)) {
+      alert`no puedes añadir una diet ya agregada`;
+    }
   }
 
   function handleSelectDT(e) {
-    setInput({
-      ...input,
-      dishTypes: [...input.dishTypes, e.target.value],
-    });
+    if (!input.dishTypes.includes(e.target.value)) {
+      setInput({
+        ...input,
+        dishTypes: [...input.dishTypes, e.target.value],
+      });
+    }
+    if (input.dishTypes.includes(e.target.value)) {
+      alert`no puedes añadir un dish type ya agregado`;
+    }
   }
 
   function handleDeleteDT(dishTypeS) {
@@ -76,7 +86,7 @@ export default function CreateAct() {
     url: /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi,
   };
 
-  const validacion = (entrada) => {
+  const validacionName = (entrada) => {
     if (regex.espacios.test(entrada)) {
       return `No puede empezar con espacios en blanco`;
     }
@@ -97,8 +107,59 @@ export default function CreateAct() {
     }
   };
 
-  const errorMensaje = validacion(input.name);
+  const validacionSumm = (entrada) => {
+    if (regex.espacios.test(entrada)) {
+      return `No puede empezar con espacios en blanco`;
+    }
+    if (regex.caracteresEs.test(entrada)) {
+      return `No puedes usar caracteres extraños`;
+    }
+  };
+  const validacionSbS = (entrada) => {
+    if (regex.espacios.test(entrada)) {
+      return `No puede empezar con espacios en blanco`;
+    }
+    if (regex.caracteresEs.test(entrada)) {
+      return `No puedes usar caracteres extraños`;
+    }
+  };
+  // const validacionDT = () => {
+  //   if(a){
+
+  //   }
+  // };
+  // const validacionD = () => {
+  //   if(a){
+
+  //   }
+  // };
+
+  const errorMensaje = validacionName(input.name);
   const errorImage = validacionImg(input.image);
+  const errorSummary = validacionSumm(input.summary);
+  const errorStepByStep = validacionSbS(input.StepByStep);
+  // const errorDishTypes = validacionDT(input.dishTypes);
+  // const errorDiets = validacionD(input.diets);
+
+  const funcionGeneral = (eName, eImage, eSummary, eStepBS) => {
+    if (
+      eName === undefined &&
+      eImage === undefined &&
+      eSummary === undefined &&
+      eStepBS === undefined
+    ) {
+      return undefined;
+    } else {
+      return true;
+    }
+  };
+  const DesactivateDisable = funcionGeneral(
+    errorMensaje,
+    errorImage,
+    errorSummary,
+    errorStepByStep
+  );
+
   ////////////////////////////////////////////////////////////////////
   useEffect(
     () => {
@@ -113,14 +174,16 @@ export default function CreateAct() {
         <h1>Crear Receta</h1>
       </div>
       <div className="create_form">
-        <div className="form">
-          <form onSubmit={(e) => enviarRecipe(e)}>
+        <div>
+          <form className="form" onSubmit={(e) => enviarRecipe(e)}>
             <label> Name </label>
             <input
               id="name"
               type="text"
               name="name"
               value={input.name}
+              required
+              title="La receta necesita un nombre"
               onChange={(e) => handleChange(e)}
             />
             {input.name ? <p>{errorMensaje}</p> : ``}
@@ -131,6 +194,8 @@ export default function CreateAct() {
               type="url"
               name="image"
               value={input.image}
+              required
+              title="La receta necesita una imagen"
               onChange={(e) => handleChange(e)}
             />
             {input.image ? <p>{errorImage}</p> : ``}
@@ -141,25 +206,30 @@ export default function CreateAct() {
               type="text"
               name="summary"
               value={input.summary}
+              required
+              title="La receta necesita una descripcion breve"
               onChange={(e) => handleChange(e)}
             />
-            <label> Health Score </label>
-            <input
-              id="healthScore"
-              type="range"
-              name="healthScore"
-              min={1}
-              max={100}
-              value={input.healthScore}
+            {input.summary ? <p>{errorSummary}</p> : ``}
+
+            <label> Step By Step </label>
+            <textarea
+              id="StepByStep"
+              type="text"
+              name="StepByStep"
+              value={input.StepByStep}
+              required
+              title="La receta necesita al menos un paso"
               onChange={(e) => handleChange(e)}
             />
-            <p> {input.healthScore}</p>
+            {input.StepByStep ? <p>{errorStepByStep}</p> : ``}
 
             <label> Dish Types </label>
             <select
               id="dishTypes"
               name="dishTypes"
               value={input.dishTypes}
+              required
               onChange={(e) => handleSelectDT(e)}
             >
               <option hidden>Select a Dish Types</option>
@@ -182,50 +252,59 @@ export default function CreateAct() {
               <option value="spread">Spread</option>
             </select>
 
-            <ul>
+            <p>
               {input.dishTypes.map((e) => (
-                <ul key={e} onClick={() => handleDeleteDT(e)}>
+                <p key={e} onClick={() => handleDeleteDT(e)}>
                   <button>{e}</button>
-                </ul>
+                </p>
               ))}
-            </ul>
-
-            <label> Step By Step </label>
-            <textarea
-              id="StepByStep"
-              type="text"
-              name="StepByStep"
-              value={input.StepByStep}
-              onChange={(e) => handleChange(e)}
-            />
+            </p>
 
             <label> Diets </label>
-            <select
-              name="diets"
-              value={input.diets}
-              required
-              onChange={(e) => handleSelect(e)}
-            >
-              <option hidden>Select a Diet</option>
-              <option disabled="disabled" default={true} value="">
-                Select a Diet
-              </option>
-              {alldiets.map((e) => {
-                return (
-                  <option value={e.name} key={e.id}>
-                    {e.name}
-                  </option>
-                );
-              })}
-            </select>
 
-            <ul>
-              {input.diets.map((e) => (
-                <ul key={e} onClick={() => handleDelete(e)}>
-                  <button>{e}</button>
-                </ul>
-              ))}
-            </ul>
+            <div>
+              <select
+                name="diets"
+                value={input.diets}
+                required
+                onChange={(e) => handleSelect(e)}
+              >
+                <option hidden>Select a Diet</option>
+                <option disabled="disabled" default={true} value="">
+                  Select a Diet
+                </option>
+                {alldiets.map((e) => {
+                  return (
+                    <option value={e.name} key={e.id}>
+                      {e.name}
+                    </option>
+                  );
+                })}
+              </select>
+
+              <ul>
+                {input.diets.map((e) => (
+                  <ul key={e} onClick={() => handleDelete(e)}>
+                    <button>{e}</button>
+                  </ul>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <label> Health Score </label>
+              <input
+                id="healthScore"
+                type="range"
+                name="healthScore"
+                min={1}
+                max={100}
+                title="El valor de la receta es de 1 por defecto pero puede ser cambiado con un maximo de 100"
+                value={input.healthScore}
+                onChange={(e) => handleChange(e)}
+              />
+              <p> {input.healthScore}</p>
+            </div>
 
             <div className="buttons">
               <Link to="/home">
@@ -234,7 +313,7 @@ export default function CreateAct() {
               <button
                 className="boton_crear"
                 type="submit"
-                disabled={errorMensaje && errorImage}
+                disabled={DesactivateDisable}
               >
                 Crear Receta
               </button>
