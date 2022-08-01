@@ -3,6 +3,7 @@ const initialState = {
   recipes: [],
   diets: [],
   recipesDetails: {},
+  error: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -14,10 +15,17 @@ export default function rootReducer(state = initialState, action) {
         allrecipes: action.payload,
       };
     case "GET_RECIPES_BY_NAME":
-      return {
-        ...state,
-        recipes: action.payload,
-      };
+      if (action.payload === "No se encontraron recetas") {
+        return {
+          ...state,
+          error: action.payload,
+        };
+      } else {
+        return {
+          ...state,
+          recipes: action.payload,
+        };
+      }
     case "RECIPES_DETAILS":
       return {
         ...state,
@@ -101,6 +109,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         recipes: filtered,
+      };
+    case "CLEAR_ERROR":
+      return {
+        ...state,
+        error: [],
       };
 
     default:

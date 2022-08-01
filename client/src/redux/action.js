@@ -66,7 +66,10 @@ export function getDiets() {
 export function createRecipes(payload) {
   return async function (dispatch) {
     try {
-      const response = await axios.post(`http://localhost:3001/recipes`, payload);
+      const response = await axios.post(
+        `http://localhost:3001/recipes`,
+        payload
+      );
       return dispatch({
         type: "CREATE_RECIPES",
         payload: response.data,
@@ -77,10 +80,10 @@ export function createRecipes(payload) {
   };
 }
 
-export function clearDetails(){
-  return{
+export function clearDetails() {
+  return {
     type: "CLEAR_DETAILS",
-  }
+  };
 }
 
 export function filterDiet(payload) {
@@ -89,3 +92,18 @@ export function filterDiet(payload) {
     payload,
   };
 }
+export function error(payload) {
+  return async function (dispatch) {
+    return dispatch({
+      type: "ERROR",
+      payload,
+    });
+  }
+}
+export function clearError(){
+  return{
+    type: "CLEAR_ERROR"
+  }
+}
+
+

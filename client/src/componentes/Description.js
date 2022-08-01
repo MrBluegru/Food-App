@@ -27,42 +27,42 @@ export default function Description() {
           </div>
 
           <div className="healthS">
-            <p>Health Score: {allrecipes.healthScore}</p>
+            <span>Health Score: {allrecipes.healthScore}</span>
           </div>
           <div className="imageHSDiets">
-            <p>
+            <div>
               Diets:
               {allrecipes.diets?.map((e) => {
                 return <p key={e}>{`${e} ✔`}</p>;
               })}
-            </p>
+            </div>
             <img
               className="image-descrip"
               src={allrecipes.image}
               alt={`Food of ${allrecipes.name}`}
             />
-            <p>
+            <span>
               Dish Types:
               {allrecipes.dishTypes?.map((e) => {
                 return <p key={e}>{`${e} ✔`}</p>;
               })}
-            </p>
+            </span>
           </div>
 
           <div className="resumen">
-            <p
+            <div
               className="resumen-descrip"
               dangerouslySetInnerHTML={{ __html: descript }}
             />
 
             <div className="stepByTitle">
               <div className="step-descripS">
-                <spam>Step by Step</spam>
+                <span>Step by Step</span>
               </div>
               <div className="step-descrip">
                 {allrecipes.StepByStep.length > 1
                   ? allrecipes.StepByStep?.map((e) => {
-                      return <p key={e}>{`✔ ${e}`} </p>;
+                      return <span key={e}>{`✔ ${e} `} </span>;
                     })
                   : allrecipes.StepByStep}
               </div>

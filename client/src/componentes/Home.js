@@ -11,10 +11,13 @@ import "../styles/home.css";
 export default function Home() {
   const dispatch = useDispatch();
   const allRecipes = useSelector((state) => state.recipes);
-  
+  const error = useSelector((state) => state.error);
+
   useEffect(() => {
-    dispatch(getRecipes());
-  }, [dispatch]);
+    if (allRecipes.length === 0) {
+      dispatch(getRecipes());
+    }
+  }, [dispatch, allRecipes]);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -23,27 +26,24 @@ export default function Home() {
   useEffect(() => {
     dispatch(clearDetails());
   });
-  
+
   // creamos estados locales para paginado
-  // estado con la pag actual y uno que setee la pag acctual
+  // estado con la pag actual y uno que setee la pag actual
   const [currentPage, setCurrentPage] = useState(1);
-  // estado local con cuantos paises mostrar por pagina y setea los paises por pagina
-  const [recipesPerPage, setRecipesPerPages] = useState(9);
-  // constante con el indice del ultimo pais que tengo en la pag
+  // estado local con cuantas recetas a mostrar por pagina y setea las recetas por pagina
+  const [recipesPerPage] = useState(9);
+  // constante con el indice de la ultima receta que tengo en la pag
   const indexOfLastRecipes = currentPage * recipesPerPage;
-  // constante con el indice del primer personaje
+  // constante con el indice de la primera receta
   const indexOfFirstRecipes = indexOfLastRecipes - recipesPerPage;
-  // constante con los paises que estan en la pagina actual
-  const currentRecipes = allRecipes.length? allRecipes.slice(
-    indexOfFirstRecipes,
-    indexOfLastRecipes
-  ) : [];  
+  // constante con las recetas que estan en la pagina actual
+  const currentRecipes = allRecipes.length
+    ? allRecipes.slice(indexOfFirstRecipes, indexOfLastRecipes)
+    : [];
 
   const paginado = (pageNum) => {
     setCurrentPage(pageNum); // seteo la pag actual
-  };  
-
-
+  };
 
   return (
     <div className="home">
@@ -67,7 +67,9 @@ export default function Home() {
       </div>
 
       <div className="cards">
-        {currentRecipes.length ? (
+        {error.length ? (
+          <button>{error}</button>
+        ) : currentRecipes.length > 1 ? (
           currentRecipes.map((e) => {
             return (
               <Card

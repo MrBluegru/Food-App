@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
@@ -12,6 +12,7 @@ import {
 
 export default function NavBar() {
   const dispatch = useDispatch();
+
 
   const handleclick = (e) => {
     e.preventDefault();
@@ -37,7 +38,7 @@ export default function NavBar() {
   return (
     <div className="nav_bar">
       <div className="nav_search">
-        <SearchBar />
+         <SearchBar />
       </div>
 
       <div className="recargarRecetas">

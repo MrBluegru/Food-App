@@ -1,29 +1,33 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getRecipesName, getRecipes } from "../redux/action";
+import { getRecipesName, getRecipes, clearError } from "../redux/action";
 import "../styles/searchBar.css";
 
 export default function SearchBar() {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
 
+
   function handleChange(e) {
     e.preventDefault();
     setName(e.target.value);
-    !e.target.value? dispatch(getRecipes()) : dispatch(getRecipesName(e.target.value));
+    !e.target.value
+      ? dispatch(getRecipes())
+      : dispatch(getRecipesName(e.target.value));
+    dispatch(clearError());
   }
 
-//   function handleSubmit(e) {
-//     e.preventDefault();
-//     dispatch(getRecipesName(name));
-//     setName("");
+  //   function handleSubmit(e) {
+  //     e.preventDefault();
+  //     dispatch(getRecipesName(name));
+  //     setName("");
 
-//   }
-//onClick={(e) => handleSubmit(e)}
+  //   }
+  //onClick={(e) => handleSubmit(e)}
 
   return (
     <div className="search_bar">
-      <form >
+      <form>
         <input
           className="search_bar_input"
           type="text"
@@ -32,8 +36,8 @@ export default function SearchBar() {
           onChange={(e) => {
             handleChange(e);
           }}
-          />
-          {/* <button>Buscar</button> */}
+        />
+        {/* <button>Buscar</button> */}
       </form>
     </div>
   );

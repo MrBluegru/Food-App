@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(to bottom, #2b2b2b41 0%, #0000005f 80%),
+  background: linear-gradient(to bottom, #2b2b2b41 0%, #0000005f 0%),
     url("../img/mk4.jpg");
   background-repeat: no-repeat;
   background-attachment: scroll;
@@ -11,10 +11,65 @@
   background-size: cover;
 }
 
-.form {
+.titulo {
   display: flex;
-  flex-direction: column;
-  /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+  grid-template-columns: 1fr 1fr;
+}
+
+.volver {
+  margin-top: 4rem;
+  border-radius: 50%;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}
+
+.nameF {
+  display: grid;
+  grid-area: nameArea;
+  height: 5rem;
+}
+.imagenF {
+  display: grid;
+  grid-area: imagenArea;
+  height: 5rem;
+}
+.summaryF {
+  display: grid;
+  grid-area: summaryArea;
+  height: 10rem;
+}
+.stepBSF {
+  display: grid;
+  grid-area: stepArea;
+  height: 10rem;
+}
+.dishTF {
+  grid-area: dishTArea;
+  height: 5rem;
+}
+.dietsF {
+  grid-area: dietsArea;
+  height: 5rem;
+}
+.healthSF {
+  grid-area: healthArea;
+  height: 1rem;
+}
+.buttons {
+  grid-area: buttonsArea;
+  height: 5rem;
+}
+.create_form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "nameArea imagenArea"
+    "summaryArea stepArea"
+    "dishTArea dietsArea"
+    "healthArea healthArea"
+    "buttonsArea buttonsArea";
+  grid-template-rows: 3fr 3fr auto 3fr 3fr;
   align-items: center;
   background-color: rgba(148, 117, 198, 0.503);
   padding: 2rem;
@@ -24,6 +79,10 @@
   text-align: center;
 }
 
+.homeLink {
+  text-decoration: none;
+}
+
 .buttons {
   display: flex;
   flex-direction: row;
@@ -31,10 +90,8 @@
   align-items: center;
 }
 
-.boton_crear:disabled{
+.boton_crear:disabled {
   color: red;
   background-color: black;
   cursor: no-drop;
 }
-
-
